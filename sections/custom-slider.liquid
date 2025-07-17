@@ -1,0 +1,66 @@
+<section class="slider-custom-container">
+  <div class="page-width">
+    <div class="custom-slider" style="
+      --width: 320px;
+      --height: 60px;
+      --quantity: {{ section.blocks.size }};
+    ">
+      <div class="custom-list">
+        {% for block in section.blocks %}
+          <div class="custom-item" style="--position: {{ forloop.index }}">
+            <div class="slide-content">
+              {% if block.settings.image %}
+                <img src="{{ block.settings.image | img_url: 'master' }}" alt="Slide {{ forloop.index }}">
+              {% endif %}
+              {% if block.settings.custom_text %}
+                <p>{{ block.settings.custom_text | upcase }}</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+    {
+      "name": "Auto Slider",
+      "class": "section",
+      "settings": [],
+      "blocks": [
+        {
+          "type": "slide",
+          "name": "Slide",
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Image"
+            },
+            {
+              "type": "text",
+              "id": "custom_text",
+              "label": "Text",
+              "default": "Gut Health"
+            }
+          ]
+        }
+      ],
+      "max_blocks": 20,
+      "presets": [
+        {
+          "name": "Auto Slider",
+          "blocks": [
+            {
+              "type": "slide",
+              "settings": {
+                "custom_text": "Gut Health"
+              }
+            }
+          ]
+        }
+      ]
+    }
+    {% endschema %}    

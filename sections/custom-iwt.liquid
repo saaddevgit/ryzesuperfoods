@@ -1,0 +1,190 @@
+<section class="page-width" id="custom-iwt-container">
+  <div class="custom-iwt-con-1">
+    {% if section.settings.main-image != blank %}
+      <img src="{{ section.settings.main-image | img_url: 'master' }}" alt="Main Image">
+    {% endif %}
+  </div>
+
+  <div class="custom-iwt-con-2">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'iwt_caption' %}
+          <div class="custom-iwt-caption">
+            <h2 style="color: #A4452B;">{{ block.settings.custom_iwt_caption | upcase }}</h2>
+          </div>
+
+        {% when 'custom_iwt_heading' %}
+          <div class="custom-heading-1">
+            <h1 style="color: #533A2D;">{{ block.settings.iwt_heading }}</h1>
+            <h1 style="color: #CA5839;">{{ block.settings.iwt_Heading1 }}</h1>
+          </div>
+
+        {% when 'custom_iwt_para' %}
+          <div class="custom-iwt-para">
+            <p>{{ block.settings.iwt_para }}</p>
+          </div>
+
+        {% when 'custom-points' %}
+          <div class="custom-points1">
+            <div class="custom-heading">
+              <h1>{{ block.settings.c-heading | upcase }}</h1>
+            </div>
+
+            {% if block.settings.show_1 %}
+              <div class="custom-point">
+                {% if block.settings.custom-img %}
+                  <img src="{{ block.settings.custom-img | img_url: 'master' }}" alt="Point Image 1">
+                {% endif %}
+                <p style="font-weight: {{ block.settings.c-fonttext }} !important;">
+                  {{ block.settings.custom-text }}
+                </p>
+              </div>
+            {% endif %}
+
+            {% if block.settings.show_2 %}
+              <div class="custom-point">
+                {% if block.settings.custom-img-1 %}
+                  <img src="{{ block.settings.custom-img-1 | img_url: 'master' }}" alt="Point Image 2">
+                {% endif %}
+                <p style="font-weight: {{ block.settings.c-fonttext }} !important;">
+                  {{ block.settings.custom-text-1 }}
+                </p>
+              </div>
+            {% endif %}
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "New Image With Text",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Main Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "main-image",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "iwt_caption",
+      "name": "Caption",
+      "settings": [
+        {
+          "type": "text",
+          "id": "custom_iwt_caption",
+          "label": "Caption",
+          "default": "Energy | Focus | Gut Health | Immunity"
+        }
+      ]
+    },
+    {
+      "type": "custom_iwt_heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "iwt_heading",
+          "label": "Heading Simple",
+          "default": "Covering All Aspects"
+        },
+        {
+          "type": "text",
+          "id": "iwt_Heading1",
+          "label": "Heading Color",
+          "default": "of Health"
+        }
+      ]
+    },
+    {
+      "type": "custom_iwt_para",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "type": "text",
+          "id": "iwt_para",
+          "label": "Text",
+          "default": "All-day energy & focus, no jitters or crash. Enjoy enhanced well-being every day."
+        }
+      ]
+    },
+    {
+      "type": "custom-points",
+      "name": "Custom Points",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_1",
+          "label": "Show Point 1",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "c-heading",
+          "label": "Heading",
+          "default": "Flavour"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom-img",
+          "label": "Image 1"
+        },
+        {
+          "type": "text",
+          "id": "custom-text",
+          "label": "Text 1",
+          "default": "Smooth & creamy like your favorite latte"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_2",
+          "label": "Show Point 2",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "custom-img-1",
+          "label": "Image 2"
+        },
+        {
+          "type": "text",
+          "id": "custom-text-1",
+          "label": "Text 2",
+          "default": "Nutty aroma & robust flavor"
+        },
+        {
+          "type": "text",
+          "id": "c-fonttext",
+          "label": "Font Weight",
+          "default": "600"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image with Text",
+      "settings": [
+        {
+          "type": "header",
+          "content": "CWS"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Image With Text"
+    }
+  ]
+}
+{% endschema %}

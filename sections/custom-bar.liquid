@@ -1,0 +1,58 @@
+<section style="background-color: {{ section.settings.bg-color }};">
+  <div class="page-width" id="cws-custom-container">
+    <div class="cws-image">
+
+      {% if section.settings.pick_image != blank %}
+        <img src="{{ section.settings.pick_image |  img_url: 'master' }}" alt="bar-image">
+      {% endif %}
+    </div>
+    <div class="cws-text" style="color: {{ section.settings.f-color }};">
+      <p>{{ section.settings.text-1 }}</p>
+      <p>{{ section.settings.text-2 }}</p>
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Custom Bar",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Content"
+      }, {
+        "type": "image_picker",
+        "id": "pick_image",
+        "label": "image"
+      }, {
+        "type": "text",
+        "id": "text-1",
+        "label": "Text 1",
+        "default": "RYZE DEAL DAYS STARTS NOW!"
+      }, {
+        "type": "text",
+        "id": "text-2",
+        "label": "Text 2",
+        "default": "UP TO 40% OFF + FREE GIFTS"
+      },
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "background Color",
+        "default": "#CA583A"
+      },
+      {
+        "type": "color",
+        "id": "f-color",
+        "label": "Text Color",
+        "default": "#ffffff"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Bar"
+      }
+    ]
+  }
+{% endschema %}
