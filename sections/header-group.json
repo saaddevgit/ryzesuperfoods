@@ -11,6 +11,17 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "custom_bar_XA8PRT": {
+      "type": "custom-bar",
+      "name": "Custom Bar",
+      "settings": {
+        "pick_image": "shopify://shop_images/favicon_ryze.webp",
+        "text-1": "RYZE DEAL DAYS STARTS NOW!",
+        "text-2": "UP TO 40% OFF + FREE GIFTS",
+        "bg-color": "#CA583A",
+        "f-color": "#ffffff"
+      }
+    },
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
@@ -51,11 +62,14 @@
         "enable_customer_avatar": true,
         "margin_bottom": 0,
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "display_old_Cart": false,
+        "display_old_account": false
       }
     }
   },
   "order": [
+    "custom_bar_XA8PRT",
     "announcement-bar",
     "header"
   ]
