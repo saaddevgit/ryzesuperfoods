@@ -191,91 +191,54 @@ div:empty {
 
 
 
-/* Container */
-.slider-custom-container {
-    background-color: #CA583A;
-    padding: 20px 0;
-    overflow: hidden;
-  }
+/* Custom Marquee */
+.custom-marquee{
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  --gap: 32px;
+  gap: var(--gap);
   
-  /* Slider Wrapper */
-  .custom-slider {
-    width: 100%;
-    height: var(--height);
-    overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+.custom-marquee-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  flex: 0 0 auto;
+  animation: scroll 20s linear infinite;
+}
+.custom-marquee-text{
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 51px;
+  margin: 0;
+  letter-spacing: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  flex-direction: row-reverse;
+}
+.custom-marquee-text img{
+  display: block;
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+  flex: 0 0 20px;
+  max-width: 100%;
+}
+@keyframes scroll {
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
   }
-  
-  /* Sliding List */
-  .custom-slider .custom-list {
-    display: flex;
-    position: relative;
-    min-width: calc(var(--width) * var(--quantity));
+}
+@keyframes animateAtc {
+  0%{
+    transform: translate(-50%, -50%) rotate(0deg);
   }
-  
-  /* Individual Slide Item */
-  .custom-slider .custom-item {
-    position: absolute;
-    width: var(--width);
-    height: var(--height);
-    left: 100%;
-    animation: autoRun 20s linear infinite;
-    animation-delay: calc((20s / var(--quantity)) * (var(--position) - 1) - 20s);
-    transition: filter 0.4s ease;
-    will-change: transform, left;
+  100%{
+    transform: translate(-50%, -50%) rotate(360deg);
   }
-  
-  /* Reverse Animation */
-  .custom-slider[reverse="true"] .custom-item {
-    animation: reversePlay 20s linear infinite;
-  }
-  
-  /* Image + Text Container */
-  .slide-content {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    height: 100%;
-  }
-  
-  /* Image Styling */
-  .slide-content img {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-    display: block;
-  }
-  
-  /* Text Styling */
-  .slide-content p {
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.2;
-    white-space: nowrap;
-    margin: 0;
-  }
-  
-  /* Animations */
-  @keyframes autoRun {
-    from {
-      left: 100%;
-    }
-    to {
-      left: calc(var(--width) * -1);
-    }
-  }
-  
-  @keyframes reversePlay {
-    from {
-      left: calc(var(--width) * -1);
-    }
-    to {
-      left: 100%;
-    }
-  }
-
+}
 
 
 
